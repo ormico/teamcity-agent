@@ -1,0 +1,20 @@
+version: '3'
+services:
+  teamcity-agent-latest:
+    image: ormico/teamcity-agent:latest
+    ports:
+      - "9090:9090"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        jetbrainsTeamCityAgentImage: jetbrains/teamcity-agent:latest
+  teamcity-agent-201923:
+    image: ormico/teamcity-agent:2019.2.3-linux
+    ports:
+      - "9090:9090"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        jetbrainsTeamCityAgentImage: jetbrains/teamcity-agent:2019.2.3-linux
