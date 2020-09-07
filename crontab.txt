@@ -1,0 +1,3 @@
+0 10    * * *   myusername    ~/update-agent.sh tc-agent-linux-d1
+10 10   * * *   myusername    ~/update-agent.sh tc-agent-linux-d2
+20 10   * * *   myusername    ~/update-agent.sh tc-agent-linux-d3

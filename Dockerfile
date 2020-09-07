@@ -1,12 +1,12 @@
 ARG jetbrainsTeamCityAgentImage='jetbrains/teamcity-agent:latest'
 
 FROM ${jetbrainsTeamCityAgentImage}
-#FROM jetbrains/teamcity-agent:latest
-
 LABEL maintainer="ormico"
-LABEL Description="Dotnet Core; Powershell Core + SQL Svr Module; NVM; Node.js; Chrome + Selenium driver"
+LABEL Description="Dotnet Core; Powershell Core + SQL Svr Module; NVM; Node.js"
+
 ENV NVM_DIR "$HOME/.nvm"
 ENV NODE_VERSION 11.15.0
+
 EXPOSE 9090
 
 USER root
@@ -21,6 +21,9 @@ RUN apt-get update && \
     && apt-get update \
     && add-apt-repository universe \
     && apt-get install -y powershell \
+        dotnet-sdk-2.2 \
+        dotnet-sdk-2.1 \
+        dotnet-sdk-3.1 \
     && pwsh -ExecutionPolicy unrestricted -c "Install-Module -Name SqlServer -Force" \
     && rm packages-microsoft-prod.deb \
     && mkdir $NVM_DIR \
@@ -35,31 +38,10 @@ RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
-# test if node is working and install rimraf
-RUN node -v \
-    && npm -v \
-    && npm install -g rimraf
+# install rimraf
+RUN npm install -g rimraf
 
-RUN curl -O https://dl-ssl.google.com/linux/linux_signing_key.pub \
-    && apt-key add linux_signing_key.pub \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
-    && apt-get update -y \
-    && apt-get -y install \
-        google-chrome-stable \
-    && rm /etc/apt/sources.list.d/google-chrome.list \
-    && rimraf /var/lib/apt/lists/* /var/cache/apt/*
-
-RUN CD_VER=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE) \
-  && echo "chromedriver v: "$CD_VER \
-  && curl -s -o /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CD_VER/chromedriver_linux64.zip \  
-  && rimraf /opt/selenium/chromedriver \
-  && unzip /tmp/chromedriver_linux64.zip -d /opt/selenium \
-  && rm /tmp/chromedriver_linux64.zip \
-  && mv /opt/selenium/chromedriver /opt/selenium/chromedriver-$CD_VER \
-  && chmod 755 /opt/selenium/chromedriver-$CD_VER \
-  && ln -fs /opt/selenium/chromedriver-$CD_VER /usr/bin/chromedriver
-
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash \
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
     && az aks install-cli
 
-USER buildagent
+#USER buildagent
