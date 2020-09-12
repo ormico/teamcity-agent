@@ -11,3 +11,9 @@ Everything TeamCity Agent Base Linux image has plus...
    * 2.2
    * 3.1
 * curl
+
+# Docker Hub
+[ormico/teamcity-agent](https://hub.docker.com/r/ormico/teamcity-agent)
+
+# GitHub
+[https://github.com/ormico/teamcity-agent](https://github.com/ormico/teamcity-agent)
