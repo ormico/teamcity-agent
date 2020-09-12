@@ -6,3 +6,8 @@ Everything TeamCity Agent Base Linux image has plus...
     * SqlServer Module
 * Azure CLI
 * Kubectl
+* .NET Core SDK
+   * 2.1
+   * 2.2
+   * 3.1
+* curl
