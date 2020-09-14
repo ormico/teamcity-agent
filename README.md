@@ -1,7 +1,7 @@
 # Expanded TeamCity Linux Agent Docker Image
 Everything TeamCity Agent Base Linux image has plus...
 * NVM
-* Nodejs 12
+* Nodejs 11.15.0 but you can switch to any version with NVM
 * Powershell Core
     * SqlServer Module
 * Azure CLI
