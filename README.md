@@ -1,4 +1,6 @@
 # Expanded TeamCity Linux Agent Docker Image
+![Docker Image CI](https://github.com/ormico/teamcity-agent/workflows/Docker%20Image%20CI/badge.svg)
+
 Everything the [JetBrains TeamCity Linux Agent](https://hub.docker.com/r/jetbrains/teamcity-agent) Base image has plus...
 * [NVM](https://github.com/nvm-sh/nvm)
 * [NodeJs](https://nodejs.org/en/) 11.15.0 but you can switch to any version with NVM
