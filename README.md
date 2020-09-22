@@ -13,7 +13,7 @@ Everything the [JetBrains TeamCity Linux Agent](https://hub.docker.com/r/jetbrai
 * [curl](https://curl.haxx.se/)
 
 # How to use
-Use this image exactly the same way you would use the [JetBrains TeamCity Linux Agent](https://hub.docker.com/r/jetbrains/teamcity-agent) image. 
+Use this image exactly the same way you would use the [JetBrains TeamCity Linux Agent](https://hub.docker.com/r/jetbrains/teamcity-agent) image, except now you can run NVM, NodeJs, NPM, PowerShell Core, PS Invoke-SQLCMD, Azure CLI, Kubernetes, .NET Core, and curl tasks.
 
 # Docker Hub
 [ormico/teamcity-agent](https://hub.docker.com/r/ormico/teamcity-agent)
